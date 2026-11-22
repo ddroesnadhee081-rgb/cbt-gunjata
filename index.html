@@ -45,37 +45,52 @@
 
     /* Kartu Login */
     .login-wrapper {
+      position: relative;
       min-height: calc(100vh - 42px);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 16px;
-      background: linear-gradient(135deg, #6d28d9 0%, #7c3aed 50%, #9333ea 100%);
+      padding: 12px;
+      background-color: #f1f5f9;
+      overflow: hidden;
+    }
+    .login-bg-layer {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.25;
+      pointer-events: none;
+      z-index: 0;
     }
     .login-card {
+      position: relative;
+      z-index: 1;
       width: 100%;
-      max-width: 540px;
-      border: none;
-      border-radius: 18px;
-      box-shadow: 0 15px 40px rgba(15, 23, 42, 0.12);
+      max-width: 410px;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-radius: 16px;
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.14);
       overflow: hidden;
-      background: #ffffff;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(6px);
     }
     .login-header {
       background: linear-gradient(135deg, #065f46, #0d9488);
       color: white;
-      padding: 18px 22px;
+      padding: 12px 16px;
     }
     .login-logo-box {
-      width: 64px;
-      height: 72px;
+      width: 48px;
+      height: 54px;
       background: #ffffff;
-      border-radius: 12px;
-      padding: 5px;
+      border-radius: 10px;
+      padding: 4px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
       flex-shrink: 0;
     }
     .login-logo-box img, .login-logo-box svg {
@@ -315,43 +330,44 @@
   <!-- VIEW 1: HALAMAN LOGIN PORTAL ASESMEN CBT                              -->
   <!-- ===================================================================== -->
   <div id="view-login" class="login-wrapper">
+    <div id="login-bg-layer" class="login-bg-layer"></div>
     <div class="login-card">
-      <div class="login-header d-flex flex-column align-items-center text-center gap-2">
+      <div class="login-header d-flex flex-column align-items-center text-center gap-1">
         <div id="login-logo-container" class="login-logo-box"></div>
         <div>
-          <span class="badge bg-warning text-dark mb-1 fw-bold" style="font-size:0.7rem;">SISTEM UJIAN BERBASIS KOMPUTER (CBT)</span>
-          <h5 class="mb-1 fw-bold">PORTAL ASESMEN CBT SMP GUNUNG JATI KOTA TANGERANG</h5>
-          <p class="mb-0 small opacity-90" style="font-size:0.78rem;">Mapel Informatika &bull; SD (Kelas 4–6) &amp; SMP (Kelas 7–9)</p>
+          <span class="badge bg-warning text-dark mb-1 fw-bold" style="font-size:0.65rem;">SISTEM UJIAN BERBASIS KOMPUTER (CBT)</span>
+          <h6 class="mb-0 fw-bold" style="font-size:0.95rem; line-height:1.3;">PORTAL ASESMEN CBT SMP GUNUNG JATI KOTA TANGERANG</h6>
+          <p class="mb-0 opacity-90" style="font-size:0.72rem;">Mapel Informatika &bull; SD (Kelas 4–6) &amp; SMP (Kelas 7–9)</p>
         </div>
       </div>
 
-      <div class="p-3 p-sm-4">
+      <div class="p-3">
         <div class="row g-2">
           <div class="col-12">
-            <label class="form-label small fw-bold text-dark mb-1">Masuk Sebagai</label>
-            <select id="login-role" class="form-select border-2" onchange="toggleFormLogin()">
+            <label class="form-label small fw-bold text-dark mb-1" style="font-size:0.78rem;">Masuk Sebagai</label>
+            <select id="login-role" class="form-select form-select-sm border-2" onchange="toggleFormLogin()">
               <option value="siswa">Peserta Didik (Siswa)</option>
               <option value="admin">Administrator / Guru</option>
             </select>
           </div>
 
           <div class="col-12">
-            <label id="label-user" class="form-label small fw-bold text-dark mb-1">Nama Lengkap Siswa</label>
-            <input type="text" id="input-user" class="form-control border-2" placeholder="Ketik nama lengkap Anda..." autocomplete="off">
+            <label id="label-user" class="form-label small fw-bold text-dark mb-1" style="font-size:0.78rem;">Nama Lengkap Siswa</label>
+            <input type="text" id="input-user" class="form-control form-control-sm border-2" placeholder="Ketik nama lengkap Anda..." autocomplete="off">
           </div>
 
           <!-- Kolom Password Khusus Admin -->
           <div id="group-password" class="col-12" style="display:none;">
-            <label class="form-label small fw-bold text-dark mb-1">Password Administrator</label>
-            <input type="password" id="input-pass" class="form-control border-2" placeholder="Masukkan password..." autocomplete="new-password">
+            <label class="form-label small fw-bold text-dark mb-1" style="font-size:0.78rem;">Password Administrator</label>
+            <input type="password" id="input-pass" class="form-control form-control-sm border-2" placeholder="Masukkan password..." autocomplete="new-password">
           </div>
 
           <!-- Kolom Pilihan Ujian Khusus Siswa -->
-          <div id="group-ujian-siswa" class="col-12 mt-2">
-            <div class="p-3 bg-light rounded-3 border">
+          <div id="group-ujian-siswa" class="col-12 mt-1">
+            <div class="p-2 bg-light rounded-3 border">
               <div class="row g-2">
                 <div class="col-7">
-                  <label class="form-label small fw-bold text-primary mb-1">Jenjang &amp; Tingkat</label>
+                  <label class="form-label fw-bold text-primary mb-1" style="font-size:0.74rem;">Jenjang &amp; Tingkat</label>
                   <select id="input-kelas" class="form-select form-select-sm border-primary" onchange="updateDropdownMapel()">
                     <option value="SD Kelas 4">SD Kelas 4</option>
                     <option value="SD Kelas 5">SD Kelas 5</option>
@@ -363,7 +379,7 @@
                 </div>
 
                 <div class="col-5">
-                  <label class="form-label small fw-bold text-primary mb-1">Rombel / Kelas</label>
+                  <label class="form-label fw-bold text-primary mb-1" style="font-size:0.74rem;">Rombel / Kelas</label>
                   <select id="input-rombel" class="form-select form-select-sm border-primary">
                     <option value="A">Kelas A</option>
                     <option value="B">Kelas B</option>
@@ -375,7 +391,7 @@
                 </div>
 
                 <div class="col-12">
-                  <label class="form-label small fw-bold text-primary mb-1">Jenis Evaluasi / Ujian</label>
+                  <label class="form-label fw-bold text-primary mb-1" style="font-size:0.74rem;">Jenis Evaluasi / Ujian</label>
                   <select id="input-jenis" class="form-select form-select-sm border-primary" onchange="updateDropdownMapel()">
                     <option value="Ulangan Harian 1">Ulangan Harian 1 (UH 1)</option>
                     <option value="Ulangan Harian 2">Ulangan Harian 2 (UH 2)</option>
@@ -385,15 +401,15 @@
                 </div>
 
                 <div class="col-12">
-                  <label class="form-label small fw-bold text-primary mb-1">Paket Soal Tersedia</label>
+                  <label class="form-label fw-bold text-primary mb-1" style="font-size:0.74rem;">Paket Soal Tersedia</label>
                   <select id="input-mapel" class="form-select form-select-sm border-primary"></select>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="col-12 mt-3">
-            <button id="btn-submit-login" onclick="eksekusiLogin()" class="btn btn-success w-100 fw-bold py-2 shadow-sm">
+          <div class="col-12 mt-2">
+            <button id="btn-submit-login" onclick="eksekusiLogin()" class="btn btn-success w-100 fw-bold py-2 shadow-sm" style="font-size:0.9rem;">
               <i class="bi bi-play-circle-fill me-2"></i> MULAI MENGERJAKAN
             </button>
           </div>
@@ -897,11 +913,31 @@
             <div class="row g-4">
               <!-- Kolom Kiri: Kop Hasil & Logo -->
               <div class="col-md-6">
-                <h6 class="fw-bold text-primary border-bottom pb-2 mb-3"><i class="bi bi-image me-1"></i> Identitas Kop &amp; Logo Login</h6>
+                <h6 class="fw-bold text-primary border-bottom pb-2 mb-3"><i class="bi bi-image me-1"></i> Identitas Kop, Logo &amp; Background Login</h6>
                 <div class="mb-3">
                   <label class="form-label fw-bold">Unggah Logo Sekolah (Tampil di Login &amp; Kop)</label>
                   <input type="file" id="input-logo-sekolah" class="form-control" accept="image/*" onchange="previewUploadLogo(event)">
-                  <small class="text-muted">Biarkan kosong jika tetap menggunakan logo default Yayasan Gunung Jati.</small>
+                  <small class="text-muted d-block mt-1">Rekomendasi ukuran: <strong>200 &times; 200 px</strong> (rasio 1:1 persegi, format PNG/JPG, maks. 2 MB). Biarkan kosong jika memakai logo default.</small>
+                </div>
+                <div class="mb-3 p-3 border rounded-3 bg-light">
+                  <label class="form-label fw-bold mb-1"><i class="bi bi-card-image text-primary me-1"></i>Background Halaman Login (Transparan)</label>
+                  <input type="file" id="input-bg-login" class="form-control form-control-sm" accept="image/*" onchange="previewUploadBgLogin(event)">
+                  <small class="text-muted d-block mt-1" style="font-size:0.76rem;">
+                    Rekomendasi ukuran: <strong>1920 &times; 1080 px</strong> atau min. <strong>1280 &times; 720 px</strong> (rasio lanskap 16:9, format JPG/PNG/WebP, maks. 3 MB).
+                  </small>
+                  <div class="mt-2">
+                    <div class="d-flex justify-content-between align-items-center small mb-1">
+                      <span class="fw-semibold">Tingkat Transparansi Gambar:</span>
+                      <span class="badge bg-primary" id="label-opasitas-bg">25%</span>
+                    </div>
+                    <input type="range" id="set-opasitas-bg" class="form-range" min="5" max="90" step="5" value="25" oninput="ubahOpasitasBgLogin(this.value)">
+                  </div>
+                  <div class="d-flex align-items-center justify-content-between mt-2">
+                    <div id="preview-bg-login-box" class="small text-muted">Belum ada gambar background dipilih.</div>
+                    <button type="button" onclick="hapusBgLogin()" class="btn btn-outline-danger btn-sm py-0 px-2">
+                      <i class="bi bi-trash me-1"></i> Hapus Gambar
+                    </button>
+                  </div>
                 </div>
                 <div class="mb-3">
                   <label class="form-label fw-bold">Alamat Lengkap Sekolah (Untuk Kop Hasil)</label>
@@ -1179,6 +1215,8 @@
     let akunAdmin = { username: 'admin', password: '123' };
     let pengaturanKop = {
       logo: '',
+      bgLogin: '',
+      bgLoginOpacity: 25,
       alamat: 'Jl. Kh. Hasyim Ashari, Kota Tangerang, Banten',
       kota: 'Kota Tangerang',
       ttd: 'Guru Informatika, S.Kom',
@@ -2097,13 +2135,13 @@
       const groupSiswa = document.getElementById('group-ujian-siswa');
       const btnSubmit = document.getElementById('btn-submit-login');
 
-      if (role === 'admin') {
+        if (role === 'admin') {
         if (labelUser) labelUser.textContent = 'Username Administrator';
         if (inputUser) inputUser.placeholder = 'Masukkan username admin...';
         if (groupPass) groupPass.style.display = 'block';
         if (groupSiswa) groupSiswa.style.display = 'none';
         if (btnSubmit) {
-          btnSubmit.className = 'btn btn-primary btn-lg w-100 fw-bold py-2 shadow-sm';
+          btnSubmit.className = 'btn btn-primary w-100 fw-bold py-2 shadow-sm';
           btnSubmit.innerHTML = '<i class="bi bi-shield-lock-fill me-2"></i> MASUK DASHBOARD ADMIN';
         }
       } else {
@@ -2112,7 +2150,7 @@
         if (groupPass) groupPass.style.display = 'none';
         if (groupSiswa) groupSiswa.style.display = 'block';
         if (btnSubmit) {
-          btnSubmit.className = 'btn btn-success btn-lg w-100 fw-bold py-2 shadow-sm';
+          btnSubmit.className = 'btn btn-success w-100 fw-bold py-2 shadow-sm';
           btnSubmit.innerHTML = '<i class="bi bi-play-circle-fill me-2"></i> MULAI MENGERJAKAN';
         }
         updateDropdownMapel();
@@ -6093,6 +6131,28 @@ Catatan aturan kunci:
         if (el) el.innerHTML = logoHtml;
       });
 
+      const bgLayer = document.getElementById('login-bg-layer');
+      const opasitas = Math.max(5, Math.min(90, Number(pengaturanKop.bgLoginOpacity) || 25));
+      if (bgLayer) {
+        if (pengaturanKop.bgLogin) {
+          bgLayer.style.backgroundImage = `url("${pengaturanKop.bgLogin}")`;
+          bgLayer.style.opacity = String(opasitas / 100);
+        } else {
+          bgLayer.style.backgroundImage = 'none';
+        }
+      }
+
+      const sliderOpasitas = document.getElementById('set-opasitas-bg');
+      const labelOpasitas = document.getElementById('label-opasitas-bg');
+      const prevBgBox = document.getElementById('preview-bg-login-box');
+      if (sliderOpasitas) sliderOpasitas.value = opasitas;
+      if (labelOpasitas) labelOpasitas.textContent = `${opasitas}%`;
+      if (prevBgBox) {
+        prevBgBox.innerHTML = pengaturanKop.bgLogin
+          ? `<img src="${pengaturanKop.bgLogin}" alt="Preview BG" class="rounded border" style="height:44px;width:78px;object-fit:cover;"> <span class="text-success fw-semibold ms-1">Gambar aktif</span>`
+          : 'Belum ada gambar background dipilih.';
+      }
+
       const elAlamatDisp = document.getElementById('kop-alamat-display');
       const elKotaDisp = document.getElementById('kop-kota-display');
       const elTtdDisp = document.getElementById('kop-ttd-display');
@@ -6116,6 +6176,52 @@ Catatan aturan kunci:
       if (prevAlamat) prevAlamat.textContent = pengaturanKop.alamat;
     }
 
+    function previewUploadBgLogin(event) {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      if (file.size > 3 * 1024 * 1024) {
+        Swal.fire('Ukuran File Terlalu Besar', 'Maksimal ukuran file gambar background adalah 3 MB.', 'warning');
+        event.target.value = '';
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const maxW = 1280;
+          const scale = img.width > maxW ? maxW / img.width : 1;
+          canvas.width = img.width * scale;
+          canvas.height = img.height * scale;
+          canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+          pengaturanKop.bgLogin = canvas.toDataURL('image/jpeg', 0.78);
+          terapkanPengaturanKopKeUI();
+          Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'info',
+            title: 'Gambar background dimuat. Klik "Simpan Pengaturan" untuk menyimpan permanen.',
+            showConfirmButton: false,
+            timer: 2600
+          });
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function ubahOpasitasBgLogin(val) {
+      pengaturanKop.bgLoginOpacity = Number(val) || 25;
+      terapkanPengaturanKopKeUI();
+    }
+
+    function hapusBgLogin() {
+      pengaturanKop.bgLogin = '';
+      const inp = document.getElementById('input-bg-login');
+      if (inp) inp.value = '';
+      terapkanPengaturanKopKeUI();
+    }
+
     function previewUploadLogo(event) {
       const file = event.target.files?.[0];
       if (!file) return;
@@ -6135,6 +6241,62 @@ Catatan aturan kunci:
         img.src = e.target.result;
       };
       reader.readAsDataURL(file);
+    }
+
+    function previewUploadBgLogin(event) {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const maxW = 1280;
+          const scale = img.width > maxW ? maxW / img.width : 1;
+          canvas.width = img.width * scale;
+          canvas.height = img.height * scale;
+          canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+          pengaturanKop.bgLogin = canvas.toDataURL('image/jpeg', 0.72);
+          terapkanPengaturanKopKeUI();
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function ubahOpasitasBgLogin(val) {
+      pengaturanKop.bgLoginOpacity = Number(val) || 25;
+      terapkanPengaturanKopKeUI();
+    }
+
+    function hapusBgLogin() {
+      pengaturanKop.bgLogin = '';
+      const inputBg = document.getElementById('input-bg-login');
+      if (inputBg) inputBg.value = '';
+      terapkanPengaturanKopKeUI();
+    }
+
+    async function simpanPengaturanKop() {
+      pengaturanKop.alamat = document.getElementById('set-alamat-sekolah').value.trim() || pengaturanKop.alamat;
+      pengaturanKop.kota = document.getElementById('set-kota-sekolah').value.trim() || pengaturanKop.kota;
+      pengaturanKop.ttd = document.getElementById('set-ttd-guru').value.trim() || pengaturanKop.ttd;
+      pengaturanKop.durasiDefault = Math.max(1, Math.min(300, Number(document.getElementById('set-durasi-default')?.value) || 45));
+      terapkanPengaturanKopKeUI();
+      await sinkronkanKeCloud('pengaturan');
+      updateDropdownMapel();
+      Swal.fire('Tersimpan!', `Pengaturan kop, background login, dan batas waktu (${pengaturanKop.durasiDefault} menit) berhasil disimpan.`, 'success');
+    }
+
+    function ubahOpacityBgLogin(val) {
+      pengaturanKop.bgLoginOpacity = Number(val) || 25;
+      terapkanPengaturanKopKeUI();
+    }
+
+    function hapusBgLogin() {
+      pengaturanKop.bgLogin = '';
+      const inputBg = document.getElementById('input-bg-login');
+      if (inputBg) inputBg.value = '';
+      terapkanPengaturanKopKeUI();
     }
 
     async function simpanPengaturanKop() {
